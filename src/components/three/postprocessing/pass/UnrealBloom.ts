@@ -14,13 +14,9 @@ const datas = {
 	threshold: 0.68
 }
 
-export class UnrealBloom extends BasePass {
-	public ref
-
+export class UnrealBloom extends BasePass<UnrealBloomPass> {
 	constructor(private _gl: THREE.WebGLRenderer) {
 		super()
-
-		this.ref = createRef<UnrealBloomPass>()
 		this._initController()
 	}
 

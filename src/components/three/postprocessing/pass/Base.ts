@@ -1,20 +1,23 @@
 import { createRef } from 'react';
 import * as THREE from 'three';
-import { ShaderPass } from 'three-stdlib';
+import { Pass, ShaderPass } from 'three-stdlib';
 
-export abstract class BasePass {
+export abstract class BasePass<T extends Pass> {
+	public ref
+
+	constructor() {
+		this.ref = createRef<T>()
+	}
+
 	protected abstract _initController: () => void
 	abstract update: (...args: any) => void
 }
 
-export abstract class BaseShader extends BasePass {
-	public ref
+export abstract class BaseShader extends BasePass<ShaderPass> {
 	public shader: THREE.Shader
 
 	constructor(shader: THREE.Shader) {
 		super()
-
-		this.ref = createRef<ShaderPass>()
 		this.shader = shader
 	}
 }
