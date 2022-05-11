@@ -1,4 +1,3 @@
-import { createRef } from 'react';
 import { UnrealBloomPass } from 'three-stdlib';
 import { extend } from '@react-three/fiber';
 import { GUIController } from '../../../../modules/gui';
