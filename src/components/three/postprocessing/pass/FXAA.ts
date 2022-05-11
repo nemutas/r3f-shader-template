@@ -1,13 +1,13 @@
 import { FXAAShader } from 'three-stdlib';
 import { Size } from '@react-three/fiber';
 import { GUIController } from '../../../../modules/gui';
-import { BuiltInShaderBasePass } from './Base';
+import { BaseShader } from './Base';
 
 const datas = {
 	enabled: true
 }
 
-export class FXAA extends BuiltInShaderBasePass {
+export class FXAA extends BaseShader {
 	constructor() {
 		super(FXAAShader)
 

@@ -4,11 +4,10 @@ import { ShaderPass } from 'three-stdlib';
 
 export abstract class BasePass {
 	protected abstract _initController: () => void
-
 	abstract update: (...args: any) => void
 }
 
-export abstract class BuiltInShaderBasePass extends BasePass {
+export abstract class BaseShader extends BasePass {
 	public ref
 	public shader: THREE.Shader
 
@@ -16,24 +15,17 @@ export abstract class BuiltInShaderBasePass extends BasePass {
 		super()
 
 		this.ref = createRef<ShaderPass>()
-
 		this.shader = shader
 	}
 }
 
-export abstract class CustomBasePass extends BasePass {
-	public ref
-	public shader: THREE.Shader
-
+export abstract class BaseCustomShader extends BaseShader {
 	constructor(uniforms: { [uniform: string]: THREE.IUniform<any> }, vertexShader: string, fragmentShader: string) {
-		super()
-
-		this.ref = createRef<ShaderPass>()
-
-		this.shader = {
+		const shader = {
 			uniforms: THREE.UniformsUtils.merge([{ tDiffuse: { value: null } }, uniforms]),
 			vertexShader,
 			fragmentShader
 		}
+		super(shader)
 	}
 }

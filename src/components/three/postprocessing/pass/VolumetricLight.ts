@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import fragmentShader from '../../../../modules/glsl/volumetricLightFrag.glsl';
 import vertexShader from '../../../../modules/glsl/volumetricLightVert.glsl';
 import { GUIController } from '../../../../modules/gui';
-import { CustomBasePass } from './Base';
+import { BaseCustomShader } from './Base';
 
 const datas = {
 	enabled: true,
@@ -13,7 +13,7 @@ const datas = {
 	samples: 100
 }
 
-export class VolumetricLight extends CustomBasePass {
+export class VolumetricLight extends BaseCustomShader {
 	constructor() {
 		const uniforms = {
 			u_lightPosition: { value: new THREE.Vector2(0.5, 0.5) },
