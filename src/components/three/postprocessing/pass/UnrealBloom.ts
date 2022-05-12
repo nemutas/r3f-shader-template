@@ -29,14 +29,11 @@ export class UnrealBloom extends BasePass<UnrealBloomPass> {
 	}
 
 	update = () => {
-		// validate pass
-		if (!this.ref.current) return
-
-		const pass = this.ref.current
-		pass.enabled = datas.enabled
 		this._gl.toneMappingExposure = datas.enabled ? Math.pow(datas.exposure, 4.0) : 1
 
-		if (!pass.enabled) return
+		// validate pass
+		const pass = this.validatedPass(datas.enabled)
+		if (!pass) return
 
 		// update uniforms
 		pass.strength = datas.strength

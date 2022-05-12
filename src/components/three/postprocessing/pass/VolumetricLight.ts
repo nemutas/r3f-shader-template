@@ -40,12 +40,8 @@ export class VolumetricLight extends BaseCustomShader {
 
 	update = () => {
 		// validate pass
-		if (!this.ref.current) return
-
-		const pass = this.ref.current
-		pass.enabled = datas.enabled
-
-		if (!pass.enabled) return
+		const pass = this.validatedPass(datas.enabled)
+		if (!pass) return
 
 		// update uniforms
 		pass.uniforms.u_exposure.value = datas.exposure

@@ -11,6 +11,16 @@ export abstract class BasePass<T extends Pass> {
 
 	protected abstract _initController: () => void
 	abstract update: (...args: any) => void
+
+	protected get pass() {
+		return this.ref.current
+	}
+
+	protected validatedPass = (enabled = true) => {
+		if (!this.pass) return null
+		this.pass.enabled = enabled
+		return enabled ? this.pass : null
+	}
 }
 
 export abstract class BaseShader extends BasePass<ShaderPass> {
